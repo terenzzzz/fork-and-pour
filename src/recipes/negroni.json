@@ -1,0 +1,32 @@
+{
+  "id": "negroni",
+  "name": "尼格罗尼",
+  "description": "经典苦甜平衡的意式鸡尾酒，适合餐前饮用，酒体干净利落且带有明显的草本香气。",
+  "github": "open-cocktail",
+  "ingredients": [
+    {
+      "quantity": "30",
+      "measure": "ml",
+      "ingredient": "金酒"
+    },
+    {
+      "quantity": "30",
+      "measure": "ml",
+      "ingredient": "金巴利"
+    },
+    {
+      "quantity": "30",
+      "measure": "ml",
+      "ingredient": "甜味美思"
+    }
+  ],
+  "directions": [
+    "将所有材料加入装满冰块的调酒杯中。",
+    "轻轻搅拌约 20 秒至充分冰镇。",
+    "滤入装有大冰块的古典杯中，并以橙皮表达香气后装饰。"
+  ],
+  "image": "negroni.avif",
+  "source": "国际调酒师协会官方配方",
+  "keywords": ["经典", "苦味", "搅拌", "金酒"],
+  "createdAt": "2026-04-14"
+}
