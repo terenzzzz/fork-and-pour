@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../pages/Home.vue';
+import Collection from '../pages/Collection.vue';
 import RecipeDetail from '../pages/RecipeDetail.vue';
 
 const router = createRouter({
@@ -9,6 +10,12 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Home,
+      meta: { hideNav: true },
+    },
+    {
+      path: '/collection',
+      name: 'collection',
+      component: Collection,
     },
     {
       path: '/recipes/:id',

@@ -1,31 +1,33 @@
 <template>
   <div class="app-shell">
-    <header class="site-header">
+    <header v-if="showNav" class="site-header">
       <div class="site-header__inner">
         <RouterLink class="brand" to="/">
           <img :src="icon" alt="Fork & Pour 图标" class="brand__icon" />
-          <span>Fork & Pour</span>
+          <span>Fork &amp; Pour</span>
         </RouterLink>
-        <a
-          class="tagline"
-          href="https://github.com/terenzzzz"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          @Terence
-        </a>
+        <nav class="links">
+          <RouterLink to="/collection">集合页</RouterLink>
+          <a href="https://github.com/terenzzzz/fork-and-pour" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+        </nav>
       </div>
     </header>
 
-    <main class="site-main">
+    <main :class="{ 'site-main': showNav }">
       <RouterView />
     </main>
   </div>
 </template>
 
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+import { computed } from 'vue';
+import { RouterLink, RouterView, useRoute } from 'vue-router';
 import icon from './assets/icon.png';
+
+const route = useRoute();
+const showNav = computed(() => !route.meta.hideNav);
 </script>
 
 <style scoped>
@@ -37,7 +39,7 @@ import icon from './assets/icon.png';
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 1000;
   backdrop-filter: blur(12px);
   background: rgba(20, 15, 12, 0.82);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -46,7 +48,7 @@ import icon from './assets/icon.png';
 .site-header__inner {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 18px 0;
+  padding: 14px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,32 +72,25 @@ import icon from './assets/icon.png';
   object-fit: contain;
 }
 
-.tagline {
-  margin: 0;
-  color: #cabfb3;
-  font-size: 0.95rem;
-  text-decoration: none;
+.links {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
 }
 
-.tagline:hover {
+.links a {
+  color: #cabfb3;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.links a:hover {
   color: #f7c873;
 }
 
 .site-main {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 32px 0 48px;
-}
-
-@media (max-width: 720px) {
-  .site-header__inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .site-main {
-    width: min(100% - 24px, 1120px);
-    padding-top: 24px;
-  }
+  padding: 24px 0 48px;
 }
 </style>
