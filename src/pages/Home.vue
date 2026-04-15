@@ -451,6 +451,52 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 767px) {
+  .hero {
+    min-height: auto;
+    padding-top: 96px;
+    padding-bottom: 48px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.4rem, 14vw, 4.2rem);
+    line-height: 0.95;
+  }
+
+  .hero-body {
+    margin-top: 24px;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .view-cocktails {
+    max-width: none;
+    width: 100%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions a {
+    width: 100%;
+  }
+
+  .left-leaf,
+  .right-leaf,
+  #c-left-leaf,
+  #c-right-leaf,
+  #m-left-leaf,
+  #m-right-leaf,
+  #f-left-leaf,
+  #f-right-leaf {
+    opacity: 0.35;
+  }
+
   .hero-video-shell {
     height: 70%;
   }
@@ -459,6 +505,69 @@ onBeforeUnmount(() => {
     transform: none;
     background: transparent;
     object-position: center;
+  }
+
+  .cocktails,
+  .about,
+  .menu {
+    padding: 72px 0;
+  }
+
+  .cocktails-list {
+    gap: 24px;
+  }
+
+  .cocktails-list li {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cocktails-list h2 {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  .cocktails-list h3 {
+    font-size: 1.25rem;
+  }
+
+  .cocktails-list p {
+    font-size: 0.9rem;
+  }
+
+  .top-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .image-grid > div {
+    min-height: 220px;
+  }
+
+  .menu-layout {
+    gap: 24px;
+  }
+
+  .cocktail img {
+    width: min(100%, 360px);
+    max-height: 46vh;
+    object-fit: contain;
+  }
+
+  .details p {
+    max-width: none;
+  }
+
+  .contact {
+    min-height: auto;
+    padding: 72px 0 36px;
+  }
+
+  .contact-content {
+    gap: 22px;
+  }
+
+  .contact h2 {
+    font-size: clamp(2.2rem, 13vw, 3.4rem);
   }
 }
 
@@ -589,7 +698,7 @@ onBeforeUnmount(() => {
   margin: 0;
   text-align: center;
   font-family: 'Modern Negra', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-size: clamp(2.8rem, 5vw, 5.8rem);
   letter-spacing: 0.04em;
   color: #e7d393;
 }
@@ -729,7 +838,6 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 900px) {
-  .hero-content,
   .about-heading,
   .cocktails-list,
   .menu-layout {
@@ -743,6 +851,10 @@ onBeforeUnmount(() => {
 
   .recipe {
     gap: 16px;
+  }
+
+  .contact-content {
+    gap: 26px;
   }
 }
 </style>

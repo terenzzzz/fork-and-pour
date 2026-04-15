@@ -3,7 +3,7 @@
   <section v-else-if="errorMessage" class="detail-state detail-state--error">{{ errorMessage }}</section>
 
   <article v-else-if="recipe" class="detail-page">
-    <RouterLink class="detail-page__back" to="/">← 返回配方列表</RouterLink>
+    <RouterLink class="detail-page__back" to="/collection">← 返回配方列表</RouterLink>
 
     <section class="detail-page__hero">
       <img class="detail-page__image" :src="recipe.imageUrl" :alt="recipe.name" />

@@ -1,20 +1,10 @@
 <template>
   <section class="collection-page">
-    <header class="hero">
-      <div>
-        <p class="hero__eyebrow">Fork & Pour Collection</p>
-        <h1>开源鸡尾酒配方集合</h1>
-        <p class="hero__text">
-          所有配方都以 JSON 形式托管，支持筛选、检索和详情查看，方便你快速找到灵感配方。
-        </p>
-      </div>
-    </header>
-
     <section class="filters">
       <div class="filters__toolbar">
         <label class="field">
           <span>搜索名称 / 原料</span>
-          <input v-model.trim="search" type="search" placeholder="例如 negroni / gin / campari" />
+          <input v-model.trim="search" type="search" placeholder="例如 尼格罗尼 / 金酒 / 柠檬" />
         </label>
 
         <label class="field">
@@ -39,8 +29,25 @@
         <p>共 {{ filteredRecipes.length }} 款配方</p>
       </div>
 
-      <div v-if="filteredRecipes.length" class="results__grid">
-        <RecipeCard v-for="recipe in filteredRecipes" :key="recipe.id" :recipe="recipe" />
+      <div v-if="filteredRecipes.length" ref="resultsGridRef" class="results__grid">
+        <RecipeCard v-for="recipe in paginatedRecipes" :key="recipe.id" :recipe="recipe" />
+      </div>
+
+      <div v-if="filteredRecipes.length > itemsPerPage" class="pagination">
+        <button type="button" :disabled="currentPage === 1" @click="currentPage -= 1">上一页</button>
+        <div class="pagination__numbers">
+          <button
+            v-for="page in visiblePages"
+            :key="page"
+            type="button"
+            :class="['pagination__number', { 'pagination__number--active': page === currentPage }]"
+            @click="currentPage = page"
+          >
+            {{ page }}
+          </button>
+        </div>
+        <span>第 {{ currentPage }} / {{ totalPages }} 页</span>
+        <button type="button" :disabled="currentPage === totalPages" @click="currentPage += 1">下一页</button>
       </div>
 
       <div v-else class="state-card">未找到符合条件的配方，请调整搜索词或标签。</div>
@@ -49,7 +56,9 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import RecipeCard from '../components/RecipeCard.vue';
 import TagFilter from '../components/TagFilter.vue';
 import { filterRecipes, getAllKeywords, getRecipes } from '../utils/recipes';
@@ -60,6 +69,11 @@ const errorMessage = ref('');
 const search = ref('');
 const selectedTag = ref('all');
 const sort = ref('name-asc');
+const itemsPerPage = 6;
+const currentPage = ref(1);
+const resultsGridRef = ref(null);
+let animationContext;
+gsap.registerPlugin(ScrollTrigger);
 
 const keywords = computed(() => getAllKeywords(recipes.value));
 const filteredRecipes = computed(() =>
@@ -69,6 +83,63 @@ const filteredRecipes = computed(() =>
     sort: sort.value,
   }),
 );
+const totalPages = computed(() => Math.max(1, Math.ceil(filteredRecipes.value.length / itemsPerPage)));
+const paginatedRecipes = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage;
+  return filteredRecipes.value.slice(start, start + itemsPerPage);
+});
+const visiblePages = computed(() => {
+  const maxVisible = 7;
+  if (totalPages.value <= maxVisible) {
+    return Array.from({ length: totalPages.value }, (_, index) => index + 1);
+  }
+
+  const half = Math.floor(maxVisible / 2);
+  let start = Math.max(1, currentPage.value - half);
+  let end = Math.min(totalPages.value, start + maxVisible - 1);
+
+  if (end - start + 1 < maxVisible) {
+    start = Math.max(1, end - maxVisible + 1);
+  }
+
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+});
+
+const setupCardAnimations = async () => {
+  if (!resultsGridRef.value || !paginatedRecipes.value.length) return;
+
+  animationContext?.revert();
+  await nextTick();
+  animationContext = gsap.context(() => {
+    gsap.utils.toArray('.recipe-card').forEach((card) => {
+      gsap.from(card, {
+        opacity: 0,
+        duration: 1,
+        ease: 'none',
+        clearProps: 'opacity',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%',
+          once: true,
+        },
+      });
+    });
+  }, resultsGridRef.value);
+};
+
+watch([search, selectedTag, sort], () => {
+  currentPage.value = 1;
+});
+
+watch(filteredRecipes, () => {
+  if (currentPage.value > totalPages.value) {
+    currentPage.value = totalPages.value;
+  }
+});
+
+watch([currentPage, paginatedRecipes], () => {
+  setupCardAnimations();
+});
 
 onMounted(async () => {
   try {
@@ -78,6 +149,12 @@ onMounted(async () => {
   } finally {
     loading.value = false;
   }
+
+  await setupCardAnimations();
+});
+
+onBeforeUnmount(() => {
+  animationContext?.revert();
 });
 </script>
 
@@ -182,8 +259,50 @@ onMounted(async () => {
 
 .results__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: start;
+  align-content: start;
   gap: 20px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.pagination button {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5f1ea;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  color: #cabfb3;
+}
+
+.pagination__numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.pagination__number {
+  min-width: 40px;
+}
+
+.pagination button.pagination__number--active {
+  background: rgba(247, 200, 115, 0.18);
+  border-color: rgba(247, 200, 115, 0.45);
+  color: #f7c873;
 }
 
 .state-card {

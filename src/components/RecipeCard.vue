@@ -1,5 +1,5 @@
 <template>
-  <article class="recipe-card">
+  <RouterLink class="recipe-card" :to="`/recipes/${recipe.id}`">
     <img class="recipe-card__image" :src="recipe.imageUrl" :alt="recipe.name" loading="lazy" />
 
     <div class="recipe-card__body">
@@ -16,12 +16,8 @@
           {{ tag }}
         </li>
       </ul>
-
-      <RouterLink class="recipe-card__link" :to="`/recipes/${recipe.id}`">
-        查看配方
-      </RouterLink>
     </div>
-  </article>
+  </RouterLink>
 </template>
 
 <script setup>
@@ -39,11 +35,25 @@ defineProps({
 .recipe-card {
   display: grid;
   grid-template-rows: 220px 1fr;
+  text-decoration: none;
+  color: inherit;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.recipe-card:hover,
+.recipe-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(247, 200, 115, 0.45);
+}
+
+.recipe-card:focus-visible {
+  outline: 2px solid rgba(247, 200, 115, 0.7);
+  outline-offset: 2px;
 }
 
 .recipe-card__image {
@@ -94,16 +104,5 @@ defineProps({
   background: rgba(247, 200, 115, 0.14);
   color: #f7c873;
   font-size: 0.85rem;
-}
-
-.recipe-card__link {
-  display: inline-flex;
-  align-self: flex-start;
-  padding: 10px 14px;
-  border-radius: 12px;
-  text-decoration: none;
-  color: #1d1612;
-  background: #f7c873;
-  font-weight: 600;
 }
 </style>
