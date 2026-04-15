@@ -1,0 +1,21 @@
+{
+  "id": "whiskey-sour",
+  "name": "Whiskey Sour",
+  "description": "以威士忌为核心的经典酸酒，兼具酒体力量与柑橘清新感，平衡得当时顺滑且富有层次。",
+  "github": "terenzzzz",
+  "ingredients": [
+    { "quantity": "45", "measure": "ml", "ingredient": "波本威士忌" },
+    { "quantity": "30", "measure": "ml", "ingredient": "新鲜柠檬汁" },
+    { "quantity": "15", "measure": "ml", "ingredient": "糖浆" },
+    { "quantity": "15", "measure": "ml", "ingredient": "蛋白（可选）" }
+  ],
+  "directions": [
+    "将所有材料放入雪克壶，先无冰干摇（若使用蛋白）。",
+    "加入冰块后再次用力摇和至充分冰镇。",
+    "过滤入古典杯并以柠檬皮或樱桃装饰。"
+  ],
+  "image": "whiskey-sour.jpg",
+  "source": "IBA Official Cocktails",
+  "keywords": ["经典", "摇和", "威士忌", "酸酒"],
+  "createdAt": "2026-04-15"
+}

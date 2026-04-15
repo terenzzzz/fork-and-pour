@@ -1,0 +1,21 @@
+{
+  "id": "margarita",
+  "name": "Margarita",
+  "description": "龙舌兰、橙味利口酒与青柠汁的经典酸酒结构，风味清脆，杯口盐边带来更立体的味觉体验。",
+  "github": "terenzzzz",
+  "ingredients": [
+    { "quantity": "50", "measure": "ml", "ingredient": "龙舌兰银酒" },
+    { "quantity": "20", "measure": "ml", "ingredient": "君度橙味利口酒" },
+    { "quantity": "15", "measure": "ml", "ingredient": "新鲜青柠汁" },
+    { "quantity": "1", "measure": "pinch", "ingredient": "盐（杯口）" }
+  ],
+  "directions": [
+    "将杯口以青柠润湿后蘸盐，备用。",
+    "把龙舌兰、君度与青柠汁加入雪克壶并加冰。",
+    "摇和后过滤入鸡尾酒杯中。"
+  ],
+  "image": "margarita.jpg",
+  "source": "IBA Official Cocktails",
+  "keywords": ["经典", "摇和", "龙舌兰", "酸酒"],
+  "createdAt": "2026-04-15"
+}

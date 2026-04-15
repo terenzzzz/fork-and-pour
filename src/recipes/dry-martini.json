@@ -1,0 +1,19 @@
+{
+  "id": "dry-martini",
+  "name": "Dry Martini",
+  "description": "以金酒与干味美思构成的标志性经典，风格利落清爽，草本与杜松香气清晰直接。",
+  "github": "terenzzzz",
+  "ingredients": [
+    { "quantity": "60", "measure": "ml", "ingredient": "金酒" },
+    { "quantity": "10", "measure": "ml", "ingredient": "干味美思" }
+  ],
+  "directions": [
+    "在调酒杯中加入冰块、金酒与干味美思。",
+    "充分搅拌至冰镇后滤入冰过的马天尼杯。",
+    "以橄榄或柠檬皮作为装饰后出杯。"
+  ],
+  "image": "dry-martini.jpg",
+  "source": "IBA Official Cocktails",
+  "keywords": ["经典", "搅拌", "金酒", "餐前"],
+  "createdAt": "2026-04-15"
+}

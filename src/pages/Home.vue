@@ -33,7 +33,9 @@
           </div>
         </div>
       </div>
-      <video ref="heroVideoRef" muted playsinline preload="auto" :src="heroVideo"></video>
+      <div ref="heroVideoShellRef" class="hero-video-shell">
+        <video ref="heroVideoRef" muted playsinline preload="auto" :src="heroVideo"></video>
+      </div>
     </section>
 
     <section id="cocktails" class="cocktails noisy">
@@ -41,32 +43,30 @@
       <img :src="getImage('cocktail-right-leaf.png')" alt="right-leaf" id="c-right-leaf" />
       <div class="container cocktails-list">
         <div>
-          <h2>Most popular cocktails:</h2>
+          <h2>Built for Contributors</h2>
           <ul>
-            <li v-for="item in cocktailLists" :key="item.name">
+            <li v-for="item in projectHighlights" :key="item.name">
               <div>
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.country }} | {{ item.detail }}</p>
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.description }}</p>
               </div>
-              <span>- {{ item.price }}</span>
             </li>
           </ul>
         </div>
         <div>
-          <h2>Most loved mocktails:</h2>
+          <h2>Contribution Workflow</h2>
           <ul>
-            <li v-for="item in mocktailLists" :key="item.name">
+            <li v-for="item in contributionSteps" :key="item.name">
               <div>
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.country }} | {{ item.detail }}</p>
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.description }}</p>
               </div>
-              <span>- {{ item.price }}</span>
             </li>
           </ul>
         </div>
       </div>
     </section>
-
+<!-- 
     <section id="about" class="about container">
       <div class="about-heading">
         <div>
@@ -96,65 +96,32 @@
         <div><div class="noise-layer"></div><img :src="getImage('abt3.png')" alt="abt3" /></div>
         <div><div class="noise-layer"></div><img :src="getImage('abt4.png')" alt="abt4" /></div>
       </div>
-    </section>
+    </section> -->
 
-    <section id="art" class="art">
-      <div class="container art-inner">
-        <h2 class="will-fade">The ART</h2>
-        <div class="art-content">
-          <ul class="will-fade">
-            <li v-for="feature in goodLists" :key="feature">
-              <img :src="getImage('check.png')" alt="check" />{{ feature }}
-            </li>
-          </ul>
-          <div class="cocktail-image">
-            <img :src="getImage('under-img.jpg')" alt="cocktail" class="masked-img" />
-          </div>
-          <ul class="will-fade">
-            <li v-for="feature in featureLists" :key="feature">
-              <img :src="getImage('check.png')" alt="check" />{{ feature }}
-            </li>
-          </ul>
-        </div>
-        <div class="masked-container">
-          <h2 class="will-fade">Sip-Worthy Perfection</h2>
-          <div id="masked-content">
-            <h3>Made with Craft, Poured with Passion</h3>
-            <p>This is not just a drink. It is a carefully crafted moment made just for you.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="menu" class="menu">
+    <section v-if="menuRecipes.length" id="menu" class="menu">
       <img :src="getImage('slider-left-leaf.png')" alt="left-leaf" id="m-left-leaf" />
       <img :src="getImage('slider-right-leaf.png')" alt="right-leaf" id="m-right-leaf" />
-      <nav class="cocktail-tabs">
-        <button
-          v-for="(cocktail, index) in allCocktails"
-          :key="cocktail.id"
-          :class="{ active: index === currentIndex }"
-          @click="goToSlide(index)"
-        >
-          {{ cocktail.name }}
-        </button>
-      </nav>
+      <div class="container menu-heading">
+        <h2 class="menu-title">Newest Recipes</h2>
+      </div>
       <div class="container menu-content">
-        <div class="arrows">
-          <button @click="goToSlide(currentIndex - 1)"><span>{{ prevCocktail.name }}</span></button>
-          <button @click="goToSlide(currentIndex + 1)"><span>{{ nextCocktail.name }}</span></button>
-        </div>
-        <div class="cocktail">
-          <img :src="getImage(currentCocktail.image)" :alt="currentCocktail.name" />
-        </div>
-        <div class="recipe">
-          <div class="info">
-            <p>Recipe for:</p>
-            <p id="title">{{ currentCocktail.name }}</p>
+        <div class="menu-layout">
+          <div class="cocktail">
+            <img :src="currentRecipe.imageUrl" :alt="currentRecipe.name" />
           </div>
-          <div class="details">
-            <h2>{{ currentCocktail.title }}</h2>
-            <p>{{ currentCocktail.description }}</p>
+          <div class="recipe">
+            <div class="info">
+              <p>当前配方</p>
+              <p id="title">{{ currentRecipe.name }}</p>
+            </div>
+            <div class="details">
+              <h2>{{ recipeKeywordsLine }}</h2>
+              <p>{{ currentRecipe.description }}</p>
+            </div>
+            <div class="arrows">
+              <button @click="goToSlide(currentIndex - 1)" aria-label="上一条配方"><span>&larr;</span></button>
+              <button @click="goToSlide(currentIndex + 1)" aria-label="下一条配方"><span>&rarr;</span></button>
+            </div>
           </div>
         </div>
       </div>
@@ -164,27 +131,31 @@
       <img :src="getImage('footer-right-leaf.png')" alt="leaf-right" id="f-right-leaf" />
       <img :src="getImage('footer-left-leaf.png')" alt="leaf-left" id="f-left-leaf" />
       <div class="container contact-content">
-        <h2>Where to Find Us</h2>
         <div>
-          <h3>Visit Our Bar</h3>
-          <p>456, Raq Blvd. #404, Los Angeles, CA 90210</p>
+          <h3>关于项目</h3>
+          <p>这是一个开源的鸡尾酒配方收集与检索工具，欢迎自由浏览和使用。</p>
         </div>
         <div>
-          <h3>Contact Us</h3>
-          <p>(555) 987-6543</p>
-          <p>hello@jsmcocktail.com</p>
+          <h3>参与贡献</h3>
+          <p>欢迎提交新配方、修复问题或提出功能建议。</p>
+          <p>你可以通过 Issue 和 Pull Request 一起完善这个项目。</p>
         </div>
         <div>
-          <h3>Open Every Day</h3>
-          <p v-for="item in openingHours" :key="item.day">{{ item.day }} : {{ item.time }}</p>
+          <h3>项目状态</h3>
+          <p v-for="item in openingHours" :key="item.day">{{ item.day }}：{{ item.time }}</p>
         </div>
         <div>
-          <h3>Socials</h3>
-          <div class="socials">
-            <a v-for="item in socials" :key="item.name" :href="item.url" target="_blank" rel="noreferrer">
-              <img :src="getImage(item.icon)" :alt="item.name" />
+          <h3>项目链接</h3>
+          <p>
+            GitHub 仓库：
+            <a href="https://github.com/terenzzzz/fork-and-pour" target="_blank" rel="noreferrer">
+              github.com/terenzzzz/fork-and-pour
             </a>
-          </div>
+          </p>
+          <p>
+            作者：
+            <a href="https://terenzzzz.cn/" target="_blank" rel="noreferrer">@Terence</a>
+          </p>
         </div>
       </div>
     </footer>
@@ -196,59 +167,44 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import heroVideo from '../assets/videos/output.mp4';
+import { filterRecipes, getRecipes } from '../utils/recipes.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const cocktailLists = [
-  { name: 'Chapel Hill Shiraz', country: 'AU', detail: 'Battle', price: '$10' },
-  { name: 'Caten Malbee', country: 'AU', detail: 'Battle', price: '$49' },
-  { name: 'Rhino Pale Ale', country: 'CA', detail: '750 ml', price: '$20' },
-  { name: 'Irish Guinness', country: 'IE', detail: '600 ml', price: '$29' },
+const projectHighlights = [
+  { name: 'independent-json', title: '每个配方都是独立 JSON 文件', description: '内容结构清晰，便于版本管理与协作审阅。' },
+  { name: 'clear-schema', title: '清晰字段约定，提交门槛低', description: '按约定填写即可贡献，降低新贡献者上手成本。' },
+  { name: 'community-library', title: '从个人收藏到社区知识库', description: '持续积累可复用配方，让内容价值不断增长。' },
 ];
-const mocktailLists = [
-  { name: 'Tropical Bloom', country: 'US', detail: 'Battle', price: '$10' },
-  { name: 'Passionfruit Mint', country: 'US', detail: 'Battle', price: '$49' },
-  { name: 'Citrus Glow', country: 'CA', detail: '750 ml', price: '$20' },
-  { name: 'Lavender Fizz', country: 'IE', detail: '600 ml', price: '$29' },
+const contributionSteps = [
+  { name: 'create-recipe', title: '创建 recipe 文件并填写必要字段', description: '在 src/recipes/ 新建 JSON，补全 id、name、ingredients 等核心字段。' },
+  { name: 'add-image-assets', title: '添加图片到 assets', description: '将配方图片放入 src/assets/images/，并在 JSON 中填写对应 image 文件名。' },
+  { name: 'open-pr', title: '发起 Pull Request 并等待 Review', description: '提交变更后由维护者审核，通过后即可合并。' },
 ];
-const featureLists = [
-  'Perfectly balanced blends',
-  'Garnished to perfection',
-  'Ice-cold every time',
-  'Expertly shaken & stirred',
-];
-const goodLists = ['Handpicked ingredients', 'Signature techniques', 'Bartending artistry in action', 'Freshly muddled flavors'];
 const openingHours = [
-  { day: 'Mon-Thu', time: '11:00am - 12am' },
-  { day: 'Fri', time: '11:00am - 2am' },
-  { day: 'Sat', time: '9:00am - 2am' },
-  { day: 'Sun', time: '9:00am - 1am' },
-];
-const socials = [
-  { name: 'Instagram', icon: 'insta.png', url: '#' },
-  { name: 'X', icon: 'x.png', url: '#' },
-  { name: 'Facebook', icon: 'fb.png', url: '#' },
-];
-const allCocktails = [
-  { id: 1, name: 'Classic Mojito', image: 'drink1.png', title: 'Simple Ingredients, Bold Flavor', description: 'Made with tequila, lime juice, and orange liqueur. A crisp, easy cocktail with strong character.' },
-  { id: 2, name: 'Raspberry Mojito', image: 'drink2.png', title: 'A Zesty Classic That Never Fails', description: 'Tangy lime, smooth tequila, and a touch of sweetness. Shaken, frozen, or on the rocks.' },
-  { id: 3, name: 'Violet Breeze', image: 'drink3.png', title: 'Simple Ingredients, Bold Flavor', description: 'Fresh citrus and floral notes combine to create a bright, refreshing signature profile.' },
-  { id: 4, name: 'Curacao Mojito', image: 'drink4.png', title: 'Crafted With Care, Poured With Love', description: 'Every pour is made with fresh ingredients and attention to detail for a balanced finish.' },
+  { day: '维护状态', time: '持续维护中' },
+  { day: '内容更新', time: '欢迎社区持续补充' },
+  { day: '数据来源', time: '公开提交与协作整理' },
+  { day: '许可方式', time: '开源协议发布' },
 ];
 const imageModules = import.meta.glob('../assets/images/*', { eager: true, import: 'default' });
 const getImage = (fileName) => imageModules[`../assets/images/${fileName}`] ?? '';
 
+const menuRecipes = ref([]);
+
 const heroChars = 'FORK & POUR'.split('');
 const heroVideoRef = ref(null);
+const heroVideoShellRef = ref(null);
 const currentIndex = ref(0);
-const currentCocktail = computed(() => allCocktails[currentIndex.value]);
-const prevCocktail = computed(() => allCocktails[(currentIndex.value - 1 + allCocktails.length) % allCocktails.length]);
-const nextCocktail = computed(() => allCocktails[(currentIndex.value + 1) % allCocktails.length]);
+const currentRecipe = computed(() => menuRecipes.value[currentIndex.value]);
+const recipeKeywordsLine = computed(() => currentRecipe.value?.keywords?.join(' · ') ?? '');
 
 let ctx;
 
 const goToSlide = (index) => {
-  currentIndex.value = (index + allCocktails.length) % allCocktails.length;
+  const len = menuRecipes.value.length;
+  if (!len) return;
+  currentIndex.value = (index + len) % len;
 };
 
 const animateMenuSlide = () => {
@@ -257,26 +213,45 @@ const animateMenuSlide = () => {
   gsap.fromTo('.details h2, .details p', { yPercent: 20, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: 'power1.inOut' });
 };
 
-onMounted(() => {
+onMounted(async () => {
+  try {
+    const recipes = await getRecipes();
+    menuRecipes.value = filterRecipes(recipes, { sort: 'latest' }).slice(0, 5);
+    currentIndex.value = 0;
+  } catch (error) {
+    console.error('加载首页配方失败:', error);
+    menuRecipes.value = [];
+  }
+
+  await nextTick();
+
   ctx = gsap.context(() => {
     gsap.from('.hero-title .char', { yPercent: 100, duration: 1.6, ease: 'expo.out', stagger: 0.06 });
     gsap.from('.subtitle', { opacity: 0, yPercent: 100, duration: 1.2, ease: 'expo.out', stagger: 0.12, delay: 0.6 });
     gsap.timeline({ scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } }).to('.right-leaf', { y: 180 }, 0).to('.left-leaf', { y: -180 }, 0);
     gsap.timeline({ scrollTrigger: { trigger: '#cocktails', start: 'top 30%', end: 'bottom 80%', scrub: true } }).from('#c-left-leaf', { x: -100, y: 100 }).from('#c-right-leaf', { x: 100, y: 100 }, 0);
     gsap.timeline({ scrollTrigger: { trigger: '#about', start: 'top center' } }).from('#about h2', { opacity: 0, yPercent: 100, duration: 1, ease: 'expo.out' }).from('.top-grid > div, .bottom-grid > div', { opacity: 0, duration: 0.9, ease: 'power1.inOut', stagger: 0.07 }, '-=0.4');
-    gsap.timeline({ scrollTrigger: { trigger: '#art', start: 'top top', end: 'bottom center', scrub: 1.2, pin: true } }).to('.will-fade', { opacity: 0, stagger: 0.2, ease: 'power1.inOut' }).to('.masked-img', { scale: 1.3, duration: 1, ease: 'power1.inOut' }).to('#masked-content', { opacity: 1, duration: 1, ease: 'power1.inOut' });
     gsap.timeline({ scrollTrigger: { trigger: '#contact', start: 'top center' } }).from('#contact h2, #contact h3, #contact p', { opacity: 0, yPercent: 50, stagger: 0.03 }).to('#f-right-leaf, #f-left-leaf', { y: -50, duration: 1, ease: 'power1.inOut' }, '-=0.3');
 
-    if (heroVideoRef.value) {
+    if (heroVideoRef.value && heroVideoShellRef.value) {
       const video = heroVideoRef.value;
+      const videoShell = heroVideoShellRef.value;
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: video, start: 'center 60%', end: 'bottom top', scrub: true, pin: true },
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+          pin: videoShell,
+        },
       });
       video.onloadedmetadata = () => {
         tl.to(video, { currentTime: video.duration });
       };
     }
-    animateMenuSlide();
+    if (menuRecipes.value.length) {
+      animateMenuSlide();
+    }
   });
 });
 
@@ -369,10 +344,6 @@ onBeforeUnmount(() => {
   color: transparent;
 }
 
-.char--ampersand {
-  font-family: 'DM Serif Text', serif;
-}
-
 .left-leaf,
 .right-leaf {
   position: absolute;
@@ -417,7 +388,7 @@ onBeforeUnmount(() => {
 }
 
 .view-cocktails p {
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   line-height: 1.6;
 }
 
@@ -437,11 +408,11 @@ onBeforeUnmount(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 9px 14px;
+  padding: 10px 15px;
   border-radius: 999px;
   border: 1px solid rgba(231, 211, 147, 0.6);
   transition: all 0.2s ease;
-  font-size: 0.9rem;
+  font-size: 0.96rem;
 }
 
 .hero-actions a:first-child {
@@ -458,14 +429,37 @@ onBeforeUnmount(() => {
   transform: translateY(-1px);
 }
 
-.hero video {
+.hero-video-shell {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 70%;
-  object-fit: cover;
+  height: clamp(72vh, 82%, 88vh);
+  overflow: hidden;
   z-index: 1;
+  pointer-events: none;
+}
+
+.hero-video-shell video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  transform: scale(0.82);
+  transform-origin: center bottom;
+  background: #111;
+}
+
+@media (max-width: 767px) {
+  .hero-video-shell {
+    height: 70%;
+  }
+
+  .hero-video-shell video {
+    transform: none;
+    background: transparent;
+    object-position: center;
+  }
 }
 
 .cocktails {
@@ -510,11 +504,20 @@ onBeforeUnmount(() => {
   margin: 18px 0;
 }
 
+.cocktails-list h2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+}
+
 .cocktails-list h3 {
   margin: 0;
   font-family: 'Modern Negra', sans-serif;
   color: #e7d393;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
+}
+
+.cocktails-list p {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
 }
 
 .about {
@@ -571,82 +574,24 @@ onBeforeUnmount(() => {
   z-index: 1;
 }
 
-.art {
-  position: relative;
-  min-height: 100vh;
-  background: radial-gradient(circle at center, #434343 0%, #000 50%, transparent 100%);
-}
-
-.art-inner {
-  padding: 100px 0;
-}
-
-.art h2 {
-  margin: 0;
-  text-align: center;
-  font-family: 'Modern Negra', sans-serif;
-  font-size: clamp(5rem, 16vw, 14rem);
-  color: #505050;
-}
-
-.art-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  gap: 24px;
-}
-
-.art-content ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 14px;
-}
-
-.art-content li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.cocktail-image {
-  width: min(760px, 60vw);
-  height: 70vh;
-  border-radius: 28px;
-  overflow: hidden;
-}
-
-.masked-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  mask-image: url('../assets/images/mask-img.png');
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: 50%;
-}
-
-.masked-container {
-  position: relative;
-  margin-top: 40px;
-  text-align: center;
-}
-
-#masked-content {
-  opacity: 0;
-}
-
-#masked-content h3 {
-  font-family: 'DM Serif Text', serif;
-  font-size: clamp(1.8rem, 4vw, 3.2rem);
-  margin: 0;
-}
-
 .menu {
   position: relative;
   padding: 120px 0;
+}
+
+.menu-heading {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 28px;
+}
+
+.menu-title {
+  margin: 0;
+  text-align: center;
+  font-family: 'Modern Negra', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: 0.04em;
+  color: #e7d393;
 }
 
 #m-left-leaf,
@@ -666,51 +611,26 @@ onBeforeUnmount(() => {
   width: min(220px, 30vw);
 }
 
-.cocktail-tabs {
-  width: min(980px, calc(100% - 32px));
-  margin: 0 auto 60px;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.cocktail-tabs button {
-  border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  background: transparent;
-  color: rgba(255, 255, 255, 0.6);
-  padding-bottom: 8px;
-  font-family: 'Modern Negra', sans-serif;
-  font-size: 1.6rem;
-  cursor: pointer;
-}
-
-.cocktail-tabs button.active {
-  color: #fff;
-  border-color: #fff;
-}
-
 .menu-content {
-  position: relative;
+  margin-top: 20px;
 }
 
-.arrows {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  display: flex;
-  justify-content: space-between;
+.menu-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 48px;
   align-items: center;
-  pointer-events: none;
 }
 
 .arrows button {
-  pointer-events: auto;
   border: none;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.06);
   color: #fff;
-  font-family: 'Modern Negra', sans-serif;
-  font-size: 2rem;
+  font-size: 1.6rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
 }
 
@@ -724,10 +644,9 @@ onBeforeUnmount(() => {
 }
 
 .recipe {
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  margin-top: 10px;
+  display: grid;
+  gap: 22px;
+  align-content: center;
 }
 
 #title {
@@ -744,7 +663,12 @@ onBeforeUnmount(() => {
 }
 
 .details p {
-  max-width: 520px;
+  max-width: 460px;
+}
+
+.arrows {
+  display: flex;
+  gap: 12px;
 }
 
 .contact {
@@ -808,20 +732,17 @@ onBeforeUnmount(() => {
   .hero-content,
   .about-heading,
   .cocktails-list,
-  .art-content,
-  .recipe {
+  .menu-layout {
     grid-template-columns: 1fr;
-    flex-direction: column;
   }
 
   .top-grid,
-  .bottom-grid,
-  .cocktail-tabs {
+  .bottom-grid {
     grid-template-columns: 1fr 1fr;
   }
 
-  .arrows {
-    display: none;
+  .recipe {
+    gap: 16px;
   }
 }
 </style>

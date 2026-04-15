@@ -1,0 +1,21 @@
+{
+  "id": "french-75",
+  "name": "French 75",
+  "description": "金酒、柠檬与糖浆打底，再以香槟补齐气泡与香气，整体清爽明快，适合作为开场酒款。",
+  "github": "terenzzzz",
+  "ingredients": [
+    { "quantity": "30", "measure": "ml", "ingredient": "金酒" },
+    { "quantity": "15", "measure": "ml", "ingredient": "新鲜柠檬汁" },
+    { "quantity": "15", "measure": "ml", "ingredient": "糖浆" },
+    { "quantity": "60", "measure": "ml", "ingredient": "香槟" }
+  ],
+  "directions": [
+    "将金酒、柠檬汁与糖浆加冰后摇和。",
+    "过滤入香槟杯。",
+    "缓慢补入冰镇香槟，并以柠檬皮装饰。"
+  ],
+  "image": "french-75.jpg",
+  "source": "IBA Official Cocktails",
+  "keywords": ["经典", "摇和", "气泡", "金酒"],
+  "createdAt": "2026-04-15"
+}

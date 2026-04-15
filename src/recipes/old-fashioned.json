@@ -1,0 +1,21 @@
+{
+  "id": "old-fashioned",
+  "name": "Old Fashioned",
+  "description": "经典威士忌鸡尾酒代表作，以糖、苦精与烈酒构建干净有力的层次，口感厚实且回味悠长。",
+  "github": "terenzzzz",
+  "ingredients": [
+    { "quantity": "60", "measure": "ml", "ingredient": "波本威士忌" },
+    { "quantity": "1", "measure": "cube", "ingredient": "方糖" },
+    { "quantity": "2", "measure": "dash", "ingredient": "安高天娜苦精" },
+    { "quantity": "1", "measure": "splash", "ingredient": "苏打水（可选）" }
+  ],
+  "directions": [
+    "将方糖与苦精放入古典杯中，轻压溶解。",
+    "加入少量苏打水与大块冰块，再倒入威士忌。",
+    "轻柔搅拌至充分冰镇，用橙皮表达香气后装饰。"
+  ],
+  "image": "old-fashioned.jpg",
+  "source": "IBA Official Cocktails",
+  "keywords": ["经典", "搅拌", "威士忌", "烈酒向"],
+  "createdAt": "2026-04-15"
+}
