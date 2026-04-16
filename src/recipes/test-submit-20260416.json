@@ -1,0 +1,32 @@
+{
+  "id": "test-submit-20260416",
+  "name": "测试酸酒 2026",
+  "description": "用于验证自动提交与 CI 校验流程的测试配方，口感清爽偏酸甜，适合在开发阶段做端到端联调。",
+  "github": "terenzzzz",
+  "ingredients": [
+    {
+      "quantity": "45",
+      "measure": "ml",
+      "ingredient": "金酒"
+    },
+    {
+      "quantity": "25",
+      "measure": "ml",
+      "ingredient": "新鲜柠檬汁"
+    },
+    {
+      "quantity": "15",
+      "measure": "ml",
+      "ingredient": "糖浆"
+    }
+  ],
+  "directions": [
+    "将所有材料与冰块加入雪克壶中。",
+    "充分摇晃约 12 秒至壶体外壁结霜。",
+    "滤入冰镇鸡尾酒杯并完成出品。"
+  ],
+  "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=80",
+  "source": "Internal QA Test Recipe",
+  "keywords": ["测试", "酸甜", "摇和"],
+  "createdAt": "2026-04-16"
+}
