@@ -6,17 +6,17 @@
   "ingredients": [
     {
       "quantity": "30",
-      "measure": "ml",
+      "measure": "毫升",
       "ingredient": "金酒"
     },
     {
       "quantity": "30",
-      "measure": "ml",
+      "measure": "毫升",
       "ingredient": "金巴利"
     },
     {
       "quantity": "30",
-      "measure": "ml",
+      "measure": "毫升",
       "ingredient": "甜味美思"
     }
   ],
@@ -25,8 +25,13 @@
     "轻轻搅拌约 20 秒至充分冰镇。",
     "滤入装有大冰块的古典杯中，并以橙皮表达香气后装饰。"
   ],
-  "image": "negroni.avif",
+  "image": "negroni.webp",
   "source": "国际调酒师协会官方配方",
-  "keywords": ["经典", "苦味", "搅拌", "金酒"],
+  "keywords": [
+    "经典",
+    "苦味",
+    "搅拌",
+    "金酒"
+  ],
   "createdAt": "2026-04-14"
 }

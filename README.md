@@ -87,7 +87,7 @@ npm run build
 - `github`: 作者 GitHub 用户名
 - `ingredients`: 原料数组
 - `directions`: 步骤数组
-- `image`: 图片文件名或远程图片地址
+- `image`: 本地 WebP 文件名（放在 `src/assets/recipes/`）或 `http(s)` 远程图片地址
 - `source`: 可选来源
 - `keywords`: 标签数组
 - `createdAt`: 可选创建日期
@@ -122,7 +122,7 @@ npm run build
     "轻轻搅拌约 20 秒至充分冰镇。",
     "滤入装有大冰块的古典杯中，并以橙皮表达香气后装饰。"
   ],
-  "image": "negroni.avif",
+  "image": "negroni.webp",
   "source": "国际调酒师协会官方配方",
   "keywords": ["经典", "苦味", "搅拌", "金酒"],
   "createdAt": "2026-04-14"
@@ -193,7 +193,7 @@ const recipe = {
   github: 'your-github-name',
   ingredients: [{ quantity: '45', measure: 'ml', ingredient: 'Gin' }],
   directions: ['Shake with ice', 'Strain into glass'],
-  image: 'example-drink.avif',
+  image: 'example-drink.webp',
   keywords: ['demo']
 };
 
@@ -247,7 +247,7 @@ if (!result.valid) {
     "<步骤1>",
     "<步骤2>"
   ],
-  "image": "example-drink.avif",
+  "image": "example-drink.webp",
   "source": "<可选>",
   "keywords": ["<关键词>"],
   "createdAt": "2026-04-14"
@@ -265,7 +265,7 @@ if (!result.valid) {
 规则:
 
 - 文件名必须与 JSON 文件同名
-- 支持 `jpg`、`jpeg`、`png`、`webp`、`avif`
+- 统一使用 **WebP**，扩展名必须为 `.webp`
 - 建议尺寸: `600 x 400`
 - 文件体积 `<= 200KB`
 
@@ -276,7 +276,7 @@ if (!result.valid) {
 - 不允许重复 `id`
 - 不允许重复 `name`
 - `id` 必须与文件名一致
-- `image` 必须引用 `src/assets/recipes/` 中的同名图片
+- `image` 必须引用 `src/assets/recipes/` 中与 `id` 同名的 `.webp` 文件（或使用 `http(s)` 外链）
 
 ### 🚀 提交 PR
 

@@ -1,7 +1,7 @@
 import { validateRecipe } from './validation';
 
 const recipeModules = import.meta.glob('../recipes/*.json', { eager: true });
-const imageModules = import.meta.glob('../assets/recipes/*.{jpg,jpeg,png,webp,avif}', {
+const imageModules = import.meta.glob('../assets/recipes/*.webp', {
   eager: true,
   import: 'default',
 });

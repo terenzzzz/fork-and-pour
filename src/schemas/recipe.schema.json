@@ -70,7 +70,7 @@
     },
     "image": {
       "type": "string",
-      "pattern": "^(https?://.+|[a-z0-9-]+\\.(jpg|jpeg|png|webp|avif))$"
+      "pattern": "^(https?://.+|[a-z0-9-]+\\.webp)$"
     },
     "source": {
       "type": "string",

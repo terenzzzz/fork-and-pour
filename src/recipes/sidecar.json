@@ -1,20 +1,37 @@
 {
   "id": "sidecar",
-  "name": "Sidecar",
+  "name": "边车",
   "description": "白兰地、橙味利口酒与柠檬汁的经典三段式结构，酒体圆润且酸甜鲜明，香气优雅。",
   "github": "terenzzzz",
   "ingredients": [
-    { "quantity": "50", "measure": "ml", "ingredient": "干邑白兰地" },
-    { "quantity": "20", "measure": "ml", "ingredient": "君度橙味利口酒" },
-    { "quantity": "20", "measure": "ml", "ingredient": "新鲜柠檬汁" }
+    {
+      "quantity": "50",
+      "measure": "毫升",
+      "ingredient": "干邑白兰地"
+    },
+    {
+      "quantity": "20",
+      "measure": "毫升",
+      "ingredient": "君度橙味利口酒"
+    },
+    {
+      "quantity": "20",
+      "measure": "毫升",
+      "ingredient": "新鲜柠檬汁"
+    }
   ],
   "directions": [
     "将所有材料加入雪克壶并加满冰块。",
     "充分摇和后双重过滤入鸡尾酒杯。",
     "可根据喜好在杯口轻裹细砂糖。"
   ],
-  "image": "sidecar.jpg",
-  "source": "IBA Official Cocktails",
-  "keywords": ["经典", "摇和", "白兰地", "酸甜"],
+  "image": "sidecar.webp",
+  "source": "国际调酒师协会官方配方",
+  "keywords": [
+    "经典",
+    "摇和",
+    "白兰地",
+    "酸甜"
+  ],
   "createdAt": "2026-04-15"
 }

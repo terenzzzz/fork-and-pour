@@ -1,20 +1,37 @@
 {
   "id": "daiquiri",
-  "name": "Daiquiri",
+  "name": "代基里",
   "description": "朗姆、青柠与糖浆构成的极简经典，酸甜比例精准时口感明亮干净，最能体现调酒基本功。",
   "github": "terenzzzz",
   "ingredients": [
-    { "quantity": "60", "measure": "ml", "ingredient": "白朗姆" },
-    { "quantity": "20", "measure": "ml", "ingredient": "新鲜青柠汁" },
-    { "quantity": "10", "measure": "ml", "ingredient": "糖浆" }
+    {
+      "quantity": "60",
+      "measure": "毫升",
+      "ingredient": "白朗姆"
+    },
+    {
+      "quantity": "20",
+      "measure": "毫升",
+      "ingredient": "新鲜青柠汁"
+    },
+    {
+      "quantity": "10",
+      "measure": "毫升",
+      "ingredient": "糖浆"
+    }
   ],
   "directions": [
     "将所有材料加入雪克壶并加满冰块。",
     "用力摇和约 10-12 秒至壶体冰冷。",
     "双重过滤入冰过的鸡尾酒杯。"
   ],
-  "image": "daiquiri.jpg",
-  "source": "IBA Official Cocktails",
-  "keywords": ["经典", "摇和", "朗姆", "酸甜"],
+  "image": "daiquiri.webp",
+  "source": "国际调酒师协会官方配方",
+  "keywords": [
+    "经典",
+    "摇和",
+    "朗姆",
+    "酸甜"
+  ],
   "createdAt": "2026-04-15"
 }

@@ -1,20 +1,37 @@
 {
   "id": "manhattan",
-  "name": "Manhattan",
+  "name": "曼哈顿",
   "description": "黑麦威士忌与甜味美思的经典组合，兼具辛香、甜感与苦精平衡，是老派酒吧的常青款。",
   "github": "terenzzzz",
   "ingredients": [
-    { "quantity": "50", "measure": "ml", "ingredient": "黑麦威士忌" },
-    { "quantity": "20", "measure": "ml", "ingredient": "甜味美思" },
-    { "quantity": "1", "measure": "dash", "ingredient": "安高天娜苦精" }
+    {
+      "quantity": "50",
+      "measure": "毫升",
+      "ingredient": "黑麦威士忌"
+    },
+    {
+      "quantity": "20",
+      "measure": "毫升",
+      "ingredient": "甜味美思"
+    },
+    {
+      "quantity": "1",
+      "measure": "滴",
+      "ingredient": "安高天娜苦精"
+    }
   ],
   "directions": [
     "将所有材料与冰块加入调酒杯。",
     "搅拌至完全冰镇后滤入冰过的鸡尾酒杯。",
     "以红樱桃装饰即可。"
   ],
-  "image": "manhattan.jpg",
-  "source": "IBA Official Cocktails",
-  "keywords": ["经典", "搅拌", "威士忌", "夜饮"],
+  "image": "manhattan.webp",
+  "source": "国际调酒师协会官方配方",
+  "keywords": [
+    "经典",
+    "搅拌",
+    "威士忌",
+    "夜饮"
+  ],
   "createdAt": "2026-04-15"
 }

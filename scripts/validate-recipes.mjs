@@ -23,7 +23,7 @@ if (files.length === 0) {
 const ids = new Set();
 const names = new Set();
 const failures = [];
-const supportedImageExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+const supportedImageExtensions = new Set(['.webp']);
 
 for (const file of files) {
   const fullPath = path.join(recipesDir, file);

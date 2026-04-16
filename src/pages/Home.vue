@@ -11,8 +11,8 @@
           {{ char === ' ' ? '\u00A0' : char }}
         </span>
       </h1>
-      <img :src="getImage('hero-left-leaf.png')" alt="left-leaf" class="left-leaf" />
-      <img :src="getImage('hero-right-leaf.png')" alt="right-leaf" class="right-leaf" />
+      <img :src="getImage('hero-left-leaf.webp')" alt="left-leaf" class="left-leaf" />
+      <img :src="getImage('hero-right-leaf.webp')" alt="right-leaf" class="right-leaf" />
       <div class="container hero-body">
         <div class="hero-content">
           <div class="hero-intro">
@@ -39,8 +39,8 @@
     </section>
 
     <section id="cocktails" class="cocktails noisy">
-      <img :src="getImage('cocktail-left-leaf.png')" alt="left-leaf" id="c-left-leaf" />
-      <img :src="getImage('cocktail-right-leaf.png')" alt="right-leaf" id="c-right-leaf" />
+      <img :src="getImage('cocktail-left-leaf.webp')" alt="left-leaf" id="c-left-leaf" />
+      <img :src="getImage('cocktail-right-leaf.webp')" alt="right-leaf" id="c-right-leaf" />
       <div class="container cocktails-list">
         <div>
           <h2>Built for Contributors</h2>
@@ -88,19 +88,19 @@
         </div>
       </div>
       <div class="image-grid top-grid">
-        <div><div class="noise-layer"></div><img :src="getImage('abt1.png')" alt="abt1" /></div>
-        <div><div class="noise-layer"></div><img :src="getImage('abt2.png')" alt="abt2" /></div>
-        <div><div class="noise-layer"></div><img :src="getImage('abt5.png')" alt="abt5" /></div>
+        <div><div class="noise-layer"></div><img :src="getImage('abt1.webp')" alt="abt1" /></div>
+        <div><div class="noise-layer"></div><img :src="getImage('abt2.webp')" alt="abt2" /></div>
+        <div><div class="noise-layer"></div><img :src="getImage('abt5.webp')" alt="abt5" /></div>
       </div>
       <div class="image-grid bottom-grid">
-        <div><div class="noise-layer"></div><img :src="getImage('abt3.png')" alt="abt3" /></div>
-        <div><div class="noise-layer"></div><img :src="getImage('abt4.png')" alt="abt4" /></div>
+        <div><div class="noise-layer"></div><img :src="getImage('abt3.webp')" alt="abt3" /></div>
+        <div><div class="noise-layer"></div><img :src="getImage('abt4.webp')" alt="abt4" /></div>
       </div>
     </section> -->
 
     <section v-if="menuRecipes.length" id="menu" class="menu">
-      <img :src="getImage('slider-left-leaf.png')" alt="left-leaf" id="m-left-leaf" />
-      <img :src="getImage('slider-right-leaf.png')" alt="right-leaf" id="m-right-leaf" />
+      <img :src="getImage('slider-left-leaf.webp')" alt="left-leaf" id="m-left-leaf" />
+      <img :src="getImage('slider-right-leaf.webp')" alt="right-leaf" id="m-right-leaf" />
       <div class="container menu-heading">
         <h2 class="menu-title">Newest Recipes</h2>
       </div>
@@ -128,8 +128,8 @@
     </section>
 
     <footer id="contact" class="contact">
-      <img :src="getImage('footer-right-leaf.png')" alt="leaf-right" id="f-right-leaf" />
-      <img :src="getImage('footer-left-leaf.png')" alt="leaf-left" id="f-left-leaf" />
+      <img :src="getImage('footer-right-leaf.webp')" alt="leaf-right" id="f-right-leaf" />
+      <img :src="getImage('footer-left-leaf.webp')" alt="leaf-left" id="f-left-leaf" />
       <div class="container contact-content">
         <div>
           <h3>关于项目</h3>
@@ -178,7 +178,7 @@ const projectHighlights = [
 ];
 const contributionSteps = [
   { name: 'create-recipe', title: '创建 recipe 文件并填写必要字段', description: '在 src/recipes/ 新建 JSON，补全 id、name、ingredients 等核心字段。' },
-  { name: 'add-image-assets', title: '添加图片到 assets', description: '将配方图片放入 src/assets/images/，并在 JSON 中填写对应 image 文件名。' },
+  { name: 'add-image-assets', title: '添加图片到 assets', description: '将配方图片放入 src/assets/recipes/（建议 WebP），并在 JSON 的 image 字段填写文件名，例如 margarita.webp。' },
   { name: 'open-pr', title: '发起 Pull Request 并等待 Review', description: '提交变更后由维护者审核，通过后即可合并。' },
 ];
 const openingHours = [
@@ -279,7 +279,7 @@ onBeforeUnmount(() => {
   inset: 0;
   pointer-events: none;
   z-index: 999;
-  background-image: url('../assets/images/noise.png');
+  background-image: url('../assets/images/noise.webp');
   background-repeat: repeat;
   background-size: 280px 180px;
   opacity: 0.16;
@@ -300,7 +300,7 @@ onBeforeUnmount(() => {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: url('../assets/images/noise.png');
+  background-image: url('../assets/images/noise.webp');
   background-repeat: repeat;
   z-index: 3;
 }
@@ -314,7 +314,7 @@ onBeforeUnmount(() => {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: url('../assets/images/noise.png') repeat;
+  background: url('../assets/images/noise.webp') repeat;
   background-size: 260px 170px;
   opacity: 0.24;
   z-index: 2;

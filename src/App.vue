@@ -24,7 +24,7 @@
 <script setup>
 import { computed } from 'vue';
 import { RouterLink, RouterView, useRoute } from 'vue-router';
-import icon from './assets/icon.png';
+import icon from './assets/icon.webp';
 
 const route = useRoute();
 const showNav = computed(() => !route.meta.hideNav);
