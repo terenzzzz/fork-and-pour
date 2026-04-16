@@ -326,5 +326,14 @@ onBeforeUnmount(() => {
   .filters__toolbar {
     grid-template-columns: 1fr;
   }
+  .results__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .results__grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 </style>
