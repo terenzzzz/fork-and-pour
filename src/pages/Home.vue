@@ -449,6 +449,7 @@ onBeforeUnmount(() => {
   transform: scale(0.82);
   transform-origin: center bottom;
   background: #111;
+  
 }
 
 @media (max-width: 767px) {
