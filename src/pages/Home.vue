@@ -231,7 +231,8 @@ onMounted(async () => {
     gsap.timeline({ scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } }).to('.right-leaf', { y: 180 }, 0).to('.left-leaf', { y: -180 }, 0);
     gsap.timeline({ scrollTrigger: { trigger: '#cocktails', start: 'top 30%', end: 'bottom 80%', scrub: true } }).from('#c-left-leaf', { x: -100, y: 100 }).from('#c-right-leaf', { x: 100, y: 100 }, 0);
     gsap.timeline({ scrollTrigger: { trigger: '#about', start: 'top center' } }).from('#about h2', { opacity: 0, yPercent: 100, duration: 1, ease: 'expo.out' }).from('.top-grid > div, .bottom-grid > div', { opacity: 0, duration: 0.9, ease: 'power1.inOut', stagger: 0.07 }, '-=0.4');
-    gsap.timeline({ scrollTrigger: { trigger: '#contact', start: 'top center' } }).from('#contact h2, #contact h3, #contact p', { opacity: 0, yPercent: 50, stagger: 0.03 }).to('#f-right-leaf, #f-left-leaf', { y: -50, duration: 1, ease: 'power1.inOut' }, '-=0.3');
+    const isMobileViewport = window.matchMedia('(max-width: 767px)').matches;
+    gsap.timeline({ scrollTrigger: { trigger: '#contact', start: isMobileViewport ? 'top 85%' : 'top center' } }).from('#contact h2, #contact h3, #contact p', { opacity: 0, yPercent: 50, stagger: 0.03 }).to('#f-right-leaf, #f-left-leaf', { y: -50, duration: 1, ease: 'power1.inOut' }, '-=0.3');
 
     if (heroVideoRef.value && heroVideoShellRef.value) {
       const video = heroVideoRef.value;
@@ -323,7 +324,7 @@ onBeforeUnmount(() => {
 .hero {
   position: relative;
   min-height: 100vh;
-  padding-top: 140px;
+  padding-top: 200px;
 }
 
 .hero-title {
@@ -507,10 +508,14 @@ onBeforeUnmount(() => {
     object-position: center;
   }
 
-  .cocktails,
-  .about,
-  .menu {
-    padding: 72px 0;
+  .landing-page .cocktails,
+  .landing-page .about,
+  .landing-page .menu {
+    padding: 48px 0;
+  }
+
+  .landing-page .cocktails {
+    min-height: auto;
   }
 
   .cocktails-list {
@@ -557,9 +562,9 @@ onBeforeUnmount(() => {
     max-width: none;
   }
 
-  .contact {
+  .landing-page .contact {
     min-height: auto;
-    padding: 72px 0 36px;
+    padding: 56px 0;
   }
 
   .contact-content {
@@ -782,9 +787,8 @@ onBeforeUnmount(() => {
 
 .contact {
   position: relative;
-  padding: 100px 0 40px;
+  padding: 100px 0 100px;
   text-align: center;
-  min-height: 100vh;
 }
 
 #f-left-leaf,
